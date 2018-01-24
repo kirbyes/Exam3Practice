@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Eric Kirby.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -29,6 +29,7 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 ########################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -89,7 +90,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,6 +102,48 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+
+    original_x = point.x
+    original_y = point.y
+
+    x = original_x
+    y = original_y
+
+    for k in range(n):
+        for j in range(k+1):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = color
+            new_circle.attach_to(window)
+            line = rg.Line(rg.Point(x - radius, y), rg.Point(x + radius, y))
+            line.attach_to(window)
+            window.render(0.1)
+
+            x += 2*radius
+        y = original_y - radius * math.sqrt(3)
+        x = original_x - radius
+        original_y = y
+        original_x = x
+
+    original_x = point.x
+    original_y = point.y
+
+    x = original_x
+    y = original_y
+
+    for k in range(n):
+        for j in range(k+1):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = color
+            new_circle.attach_to(window)
+            line = rg.Line(rg.Point(x - radius, y), rg.Point(x + radius, y))
+            line.attach_to(window)
+            window.render(0.1)
+
+            x += 2*radius
+        y = original_y + radius * math.sqrt(3)
+        x = original_x - radius
+        original_y = y
+        original_x = x
 
 
 def run_test_many_hourglasses():
