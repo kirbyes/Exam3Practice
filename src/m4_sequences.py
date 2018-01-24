@@ -311,7 +311,7 @@ def practice_problem4c(points):
       :rtype: rg.Point | string
     """
     ####################################################################
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #     The testing code is already written for you (above).
     #
     # IMPORTANT: This problem is your LOWEST PRIORITY for preparing
@@ -322,8 +322,6 @@ def practice_problem4c(points):
     #    DIFFICULTY:      9
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
-
-    index = -1
 
     for k in range(len(points)):
         if is_prime(points[k].x) and is_prime(points[k].y):
@@ -419,13 +417,21 @@ def practice_problem4d(sequence):
       :rtype: int
     """
     ####################################################################
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
+
+    total = 0
+
+    for k in range(len(sequence)-1):
+        if sequence[k] != sequence[k+1] and is_prime(sequence[k]) and is_prime(sequence[k+1]):
+            total += sequence[k]
+
+    return total
 
 
 # ----------------------------------------------------------------------
