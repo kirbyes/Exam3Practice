@@ -229,7 +229,7 @@ def many_hourglasses(window, square, m, colors):
     window.render()
 
     for k in range(1, m + 1):
-        hourglass(window, k, center,radius,colors[k % len(colors)-1])
+        hourglass(window, k, center, radius, colors[k % len(colors)-1])
         center.x += 2*k*radius + radius
         if k < m:
             x_coord1 = center.x - (k+1)*radius
