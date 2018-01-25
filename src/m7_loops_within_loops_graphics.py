@@ -116,7 +116,7 @@ def hourglass(window, n, point, radius, color):
             new_circle.attach_to(window)
             line = rg.Line(rg.Point(x - radius, y), rg.Point(x + radius, y))
             line.attach_to(window)
-            window.render(0.1)
+            window.render()
 
             x += 2*radius
         y = original_y - radius * math.sqrt(3)
@@ -137,7 +137,7 @@ def hourglass(window, n, point, radius, color):
             new_circle.attach_to(window)
             line = rg.Line(rg.Point(x - radius, y), rg.Point(x + radius, y))
             line.attach_to(window)
-            window.render(0.1)
+            window.render()
 
             x += 2*radius
         y = original_y + radius * math.sqrt(3)
@@ -206,7 +206,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -222,6 +222,22 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+
+    center = square.center
+    radius = square.length_of_each_side / 2
+    rg.Square(square.center, square.length_of_each_side).attach_to(window)
+    window.render()
+
+    for k in range(1, m + 1):
+        hourglass(window, k, center,radius,colors[k % len(colors)-1])
+        center.x += 2*k*radius + radius
+        if k < m:
+            x_coord1 = center.x - (k+1)*radius
+            y_coord1 = center.y - math.sqrt(3) * radius * k - radius
+            x_coord2 = center.x + (k+1)*radius
+            y_coord2 = center.y + math.sqrt(3) * radius * k + radius
+            rect = rg.Rectangle(rg.Point(x_coord1, y_coord1), rg.Point(x_coord2, y_coord2))
+            rect.attach_to(window)
 
 
 # ----------------------------------------------------------------------
